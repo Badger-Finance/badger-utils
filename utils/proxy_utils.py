@@ -3,7 +3,7 @@ from brownie.network.contract import Contract
 from brownie.network.account import Account
 from brownie.network.gas.strategies import GasNowStrategy
 
-from utils.artifacts import artifacts
+from utils.registry.artifacts import artifacts
 
 gas_strategy = GasNowStrategy("rapid")
 
