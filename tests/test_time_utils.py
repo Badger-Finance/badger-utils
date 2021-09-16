@@ -47,7 +47,8 @@ def test_to_utc_date():
 
 
 def test_to_timestamp():
-    assert to_timestamp(datetime.fromisoformat('2020-05-20 13:01:30')) == 1589968890
+    date_time_obj = datetime.strptime('18/09/19 01:55:19', '%d/%m/%y %H:%M:%S')
+    assert to_timestamp(date_time_obj) == 1568760919
 
 
 @pytest.mark.parametrize(
