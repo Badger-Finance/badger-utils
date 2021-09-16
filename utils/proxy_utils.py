@@ -8,7 +8,7 @@ from utils.registry.artifacts import artifacts
 gas_strategy = GasNowStrategy("rapid")
 
 
-def deploy_proxy_admin(deployer):
+def deploy_proxy_admin(deployer: Account):
     abi = artifacts.open_zeppelin["ProxyAdmin"]["abi"]
     bytecode = artifacts.open_zeppelin["ProxyAdmin"]["bytecode"]
 
@@ -25,7 +25,7 @@ def deploy_proxy_admin(deployer):
 
 
 def deploy_proxy_uninitialized(
-    contract_name, logic_abi, logic, proxy_admin, deployer: Account
+    contract_name: str, logic_abi, logic: str, proxy_admin, deployer: Account
 ):
     abi = artifacts.open_zeppelin["AdminUpgradeabilityProxy"]["abi"]
     bytecode = artifacts.open_zeppelin["AdminUpgradeabilityProxy"]["bytecode"]
