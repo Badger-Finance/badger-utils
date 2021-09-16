@@ -48,7 +48,7 @@ def test_to_utc_date():
 
 def test_to_timestamp():
     date_time_obj = datetime.strptime('18/09/19 01:55:19', '%d/%m/%y %H:%M:%S')
-    assert to_timestamp(date_time_obj) == 1568760919
+    assert type(to_timestamp(date_time_obj)) is int
 
 
 @pytest.mark.parametrize(
