@@ -2,6 +2,7 @@
 init:
 	pip install -e .[socks]
 	pip install -r requirements-dev.txt
+	brownie compile
 test:
 	detox
 ci:
