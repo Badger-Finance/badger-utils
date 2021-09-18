@@ -53,6 +53,7 @@ class ChainRegistry:
         self.compound = compound
         self.defidollar = defidollar
         self.chainlink = chainlink
+        self.digg = digg
 
     def yearn_system(self) -> YearnSystem:
         if self.yearn is None:
