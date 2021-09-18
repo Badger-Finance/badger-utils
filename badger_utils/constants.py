@@ -1,3 +1,5 @@
+from enum import Enum
+
 from brownie.network import web3
 
 AddressZero = "0x0000000000000000000000000000000000000000"
@@ -107,3 +109,23 @@ SETT_BOOST_RATIOS = {
 }
 
 CONVEX_SETTS = ["native.hbtcCrv", "native.pbtcCrv", "native.obtcCrv", "native.bbtcCrv"]
+
+
+class WhaleRegistryAction(Enum):
+    DISTRIBUTE_FROM_EOA = (0,)
+    DISTRIBUTE_FROM_CONTRACT = (1,)
+    POPULATE_NEW_SUSHI_LP = 2
+
+
+class ContractSystems(Enum):
+    ARAGON = ("aragon",)
+    GNOSIS_SAFE = ("gnosis-safe",)
+    OPEN_ZEPPELIN = ("open-zeppelin",)
+    UNISWAP = ("uniswap",)
+    SUSHISWAP = ("sushiswap",)
+    MULTICALL = ("multicall",)
+    PICKLE = ("pickle",)
+    HARVEST = ("harvest",)
+    CURVE = ("curve",)
+    CHAINLINK = ("chainlink",)
+    TOKENS = "tokens"
