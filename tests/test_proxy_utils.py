@@ -1,10 +1,10 @@
 import pytest
 from brownie import accounts
 
-from utils.proxy_utils import deploy_proxy
-from utils.proxy_utils import deploy_proxy_admin
-from utils.proxy_utils import deploy_proxy_uninitialized
-from utils.registry.artifacts import artifacts
+from badger_utils.proxy_utils import deploy_proxy
+from badger_utils.proxy_utils import deploy_proxy_admin
+from badger_utils.proxy_utils import deploy_proxy_uninitialized
+from badger_utils.registry.artifacts import artifacts
 
 
 @pytest.fixture(scope='module', autouse=True)

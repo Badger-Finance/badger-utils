@@ -5,7 +5,7 @@ from brownie.network.account import Account
 from brownie.network.contract import Contract
 from brownie.network.gas.strategies import GasNowStrategy
 
-from utils.registry.artifacts import artifacts
+from badger_utils.registry.artifacts import artifacts
 
 gas_strategy = GasNowStrategy("rapid")
 

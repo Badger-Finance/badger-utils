@@ -18,7 +18,7 @@ setup(
     description="Badger utils and shared code",
     long_description=README,
     long_description_content_type="text/markdown",
-    packages=["utils"],
+    packages=["badger_utils"],
     include_package_data=True,
     version="0.0.1",
     classifiers=[

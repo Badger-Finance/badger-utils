@@ -6,5 +6,5 @@ init:
 test:
 	detox
 ci:
-	pytest --cov-report=xml --cov-config=.coveragerc --cov=utils/
+	pytest --cov-report=xml --cov-config=.coveragerc --cov=badger_utils/
 

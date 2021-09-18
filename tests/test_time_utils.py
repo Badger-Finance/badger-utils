@@ -2,14 +2,14 @@ from datetime import datetime
 
 import pytest
 
-from utils.time_utils import days_to_seconds
-from utils.time_utils import hours_to_seconds
-from utils.time_utils import minutes_to_seconds
-from utils.time_utils import seconds_to_days
-from utils.time_utils import seconds_to_hours
-from utils.time_utils import seconds_to_minutes
-from utils.time_utils import to_timestamp
-from utils.time_utils import to_utc_date
+from badger_utils.time_utils import days_to_seconds
+from badger_utils.time_utils import hours_to_seconds
+from badger_utils.time_utils import minutes_to_seconds
+from badger_utils.time_utils import seconds_to_days
+from badger_utils.time_utils import seconds_to_hours
+from badger_utils.time_utils import seconds_to_minutes
+from badger_utils.time_utils import to_timestamp
+from badger_utils.time_utils import to_utc_date
 
 
 @pytest.mark.parametrize(

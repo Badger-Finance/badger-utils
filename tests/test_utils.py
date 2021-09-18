@@ -1,7 +1,7 @@
 import pytest
 
-from utils.utils import approx
-from utils.utils import val
+from badger_utils.utils import approx
+from badger_utils.utils import val
 
 
 @pytest.mark.parametrize(
