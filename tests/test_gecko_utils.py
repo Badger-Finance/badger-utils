@@ -29,7 +29,7 @@ def test_fetch_usd_price__happy_path():
         'https://api.coingecko.com/api/v3/coins/badger-dao'
         '?tickers=false&community_data=false&developer_data=false&sparkline=false',
         json=GECKO_GENERIC_RESPONSE, status=200)
-    assert fetch_usd_price("0x3472a5a71965499acd81997a54bba8d852c6e53d") == 20.12
+    assert fetch_usd_price("0x3472a5a71965499acd81997a54bba8d852c6e53d") == 3500.12
 
 
 @responses.activate
