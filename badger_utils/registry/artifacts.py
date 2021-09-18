@@ -103,6 +103,12 @@ with open(os.path.join(
 
 with open(os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
+    "dependency-artifacts/digg/Mock.json",
+)) as f:
+    Mock = json.load(f)
+
+with open(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
     "dependency-artifacts/open-zeppelin-upgrades",
     "AdminUpgradeabilityProxy.json",
 )) as f:
@@ -148,6 +154,9 @@ artifacts = DotMap(
     ),
     gnosis_safe=DotMap(
         MasterCopy=MasterCopy, ProxyFactory=ProxyFactory, GnosisSafe=GnosisSafe
+    ),
+    digg=DotMap(
+        Mock=Mock,
     ),
     open_zeppelin=DotMap(
         ProxyAdmin=ProxyAdmin,
