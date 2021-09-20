@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from brownie import Token, accounts
+from brownie import Token
+from brownie import accounts
 
 
 def main():
