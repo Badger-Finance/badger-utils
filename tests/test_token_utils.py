@@ -4,8 +4,8 @@ from brownie.network.account import Account
 from dotmap import DotMap
 
 from badger_utils.constants import WhaleRegistryAction
-from badger_utils.token_utils.utils import distribute_from_whales
-from badger_utils.token_utils.utils import get_token_balances
+from badger_utils.token_utils import distribute_from_whales
+from badger_utils.token_utils import get_token_balances
 from badger_utils.utils import approx
 
 

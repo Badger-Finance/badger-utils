@@ -6,11 +6,11 @@ from brownie import interface
 from brownie import web3
 
 from badger_utils.constants import MaxUint256
-from badger_utils.registry import registry
 
 
 class SushiswapSystem:
     def __init__(self):
+        from badger_utils.registry import registry
         self.contract_registry = registry.sushiswap
         self.factory = interface.IUniswapV2Factory(
             web3.toChecksumAddress(self.contract_registry.factory)
