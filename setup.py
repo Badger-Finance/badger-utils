@@ -17,15 +17,17 @@ setup(
     author_email="blaynemono@gmail.com",
     description="Badger utils and shared code",
     long_description=README,
+    keywords=["badger-utils"],
     long_description_content_type="text/markdown",
     packages=["badger_utils"],
     include_package_data=True,
     version="0.0.1",
     classifiers=[
         "License :: OSI Approved :: MIT License",
+        "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
     ],
     license="MIT",
     url="https://github.com/SHAKOTN/badger-utils",
-    python_requires=">=3.6,<4",
+    python_requires=">=3.7,<4",
 )
