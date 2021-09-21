@@ -1,6 +1,7 @@
 import pathlib
 
 from setuptools import setup
+from setuptools import find_packages
 
 
 with open("requirements.txt", "r") as f:
@@ -19,9 +20,9 @@ setup(
     long_description=README,
     keywords=["badger-utils"],
     long_description_content_type="text/markdown",
-    packages=["badger_utils"],
+    packages=find_packages(exclude=['tests*']),
     include_package_data=True,
-    version="0.0.3",
+    version="0.0.4",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
