@@ -33,36 +33,7 @@ This is the library for all badger utils that were moved from [badger-system](ht
 ## Requirements
 To make use of library you would need some interfaces and contracts to be [compiled](https://eth-brownie.readthedocs.io/en/stable/compile.html) 
 and injected by brownie into your brownie project.
-List of required interfaces:
-```
-BadgerGuestListAPI
-GuestListAPI
-ICToken
-IChainlinkForwarder
-IComptroller
-IDigg
-IDiggDistributor
-IDiggRewardsFaucet
-IDiggStrategy
-IERC20
-IERC20Detailed
-ILendingPool
-IMedianOracle
-IStakingRewards
-ISushiChef
-IUniswapExchange
-IUniswapFactory
-IUniswapPair
-IUniswapRouterV2
-IUniswapV2Factory
-IUniswapV2Pair
-IWETH
-IxSushi
-RegistryAPI
-StrategyAPI
-USDT
-WETH
-```
+List of required interfaces can be found [here](https://github.com/SHAKOTN/badger-utils/tree/master/interfaces)
 
 You also need some contracts to be compiled as well:
 ```
@@ -75,4 +46,75 @@ Please, not that it can all be copied from
 `pip install badger-utils`
 
 ## Using library
+Giving some examples on library usage:
+### Using coingecko utils:
+```python
+from badger_utils.coingecko_utils import fetch_usd_price
+some_erc_token = interface.IERC20(Token)
+usd_price = fetch_usd_price(some_erc_token.address)
+```
 
+### Using network utils
+```python
+from badger_utils.network_manager import network_manager
+network = network_manager.get_active_network()
+badger_deploy_file = network_manager.get_active_network_badger_deploy()
+```
+
+### Using proxy utils
+```python
+from badger_utils.proxy_utils import deploy_proxy_admin
+from brownie import accounts
+
+contract = deploy_proxy_admin(accounts[0])
+assert contract.address is not None
+```
+
+### Using token utils
+```python
+import token  # some deployed token
+from brownie import accounts
+from badger_utils.token_utils import distribute_from_whales
+
+token.transfer(
+    "0x19d099670a21bC0a8211a89B84cEdF59AbB4377F", 100000, {'from': accounts[0]}
+)
+distribute_from_whales(accounts[1], percentage=0.8)
+```
+
+### Using constants
+```python
+from badger_utils.constants import AddressZero
+from badger_utils.constants import TOKEN_LOCKER_ROLE
+from badger_utils.constants import ContractSystems
+```
+
+### Using tx timer
+```python
+from badger_utils.tx_timer import tx_timer
+from brownie import accounts
+
+tx_timer.prepare_timer(accounts[0], "Harvest")
+tx_timer.start_timer(accounts[0], 'Harvest')
+tx_timer.end_timer()
+```
+
+### Using artifacts
+```python
+from badger_utils.registry.artifacts import artifacts
+
+timelock_abi = artifacts.open_zeppelin["TokenTimelock"]["abi"]
+```
+
+### Using registries
+```python
+from brownie import web3
+from badger_utils.registry import registry
+
+checksummed = web3.toChecksumAddress(registry.tokens.wbtc)
+```
+
+### Using systems
+```python
+from badger_utils.systems import SushiswapSystem
+```

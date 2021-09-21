@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
-    version="0.0.4",
+    version="0.0.5",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
@@ -30,5 +30,5 @@ setup(
     ],
     license="MIT",
     url="https://github.com/SHAKOTN/badger-utils",
-    python_requires=">=3.7,<4",
+    python_requires=">=3.6,<4",
 )
