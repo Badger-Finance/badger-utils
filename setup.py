@@ -21,7 +21,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=["badger_utils"],
     include_package_data=True,
-    version="0.0.1",
+    version="0.0.2",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
