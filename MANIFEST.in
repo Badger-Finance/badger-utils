@@ -3,6 +3,7 @@ include badger_utils/registry/dependency-artifacts/aragon/CompanyTemplate.json
 include badger_utils/registry/dependency-artifacts/aragon/Finance.json
 include badger_utils/registry/dependency-artifacts/aragon/MiniMeToken.json
 include badger_utils/registry/dependency-artifacts/aragon/Vault.json
+include badger_utils/registry/dependency-artifacts/aragon/TokenManager.json
 include badger_utils/registry/dependency-artifacts/aragon/Voting.json
 include badger_utils/registry/dependency-artifacts/digg/Mock.json
 include badger_utils/registry/dependency-artifacts/gnosis-safe/Executor.json
