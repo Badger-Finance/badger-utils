@@ -47,6 +47,14 @@ Please, not that it can all be copied from
 ## Installing library
 `pip install badger-utils`
 
+## To run tests:
+```
+$ virtualenv venv
+$ source venv/bin/activate
+$ make
+$ brownie test
+```
+
 ## Using library
 Giving some examples on library usage:
 ### Using coingecko utils:
