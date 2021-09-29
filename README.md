@@ -1,10 +1,15 @@
 # badger-utils library
 
+# Youtube Video Link
+https://www.youtube.com/watch?v=IX5AFnnSFGg
+
+---
+
 This is the library for all badger utils that were moved from [badger-system](https://github.com/Badger-Finance/badger-system) repo.
 
-| Build  | Coverage |
-| ------------- | ------------- |
-| [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/SHAKOTN/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/SHAKOTN/badger-utils)  |
+| Build  | Coverage | Pypi | 
+| ------------- | ------------- | ------------- |
+| [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/SHAKOTN/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/SHAKOTN/badger-utils)  | [![PyPI version](https://badge.fury.io/py/badger-utils.svg)](https://badge.fury.io/py/badger-utils) |
 
 PYPI Index: https://pypi.org/project/badger-utils/
 
@@ -46,6 +51,14 @@ Please, not that it can all be copied from
 
 ## Installing library
 `pip install badger-utils`
+
+## To run tests:
+```
+$ virtualenv venv
+$ source venv/bin/activate
+$ make
+$ brownie test
+```
 
 ## Using library
 Giving some examples on library usage:
