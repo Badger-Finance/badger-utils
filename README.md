@@ -7,9 +7,9 @@ https://www.youtube.com/watch?v=IX5AFnnSFGg
 
 This is the library for all badger utils that were moved from [badger-system](https://github.com/Badger-Finance/badger-system) repo.
 
-| Build  | Coverage |
-| ------------- | ------------- |
-| [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/SHAKOTN/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/SHAKOTN/badger-utils)  |
+| Build  | Coverage | Pypi | 
+| ------------- | ------------- | ------------- |
+| [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/SHAKOTN/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/SHAKOTN/badger-utils)  | [![PyPI version](https://badge.fury.io/py/badger-utils.svg)](https://badge.fury.io/py/badger-utils) |
 
 PYPI Index: https://pypi.org/project/badger-utils/
 
