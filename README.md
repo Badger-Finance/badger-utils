@@ -6,7 +6,6 @@ This is the library for all badger utils that were moved from [badger-system](ht
 | ------------- | ------------- | ------------- |
 | [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/SHAKOTN/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/SHAKOTN/badger-utils)  | [![PyPI version](https://badge.fury.io/py/badger-utils.svg)](https://badge.fury.io/py/badger-utils) |
 
-PYPI Index: https://pypi.org/project/badger-utils/
 
 ---
 
@@ -41,8 +40,6 @@ You also need some contracts to be compiled as well:
 ```
 ForceEther, SafeMath, Token
 ```
-
-Please, not that it can all be copied from 
 
 ## Installing library
 `pip install badger-utils`
