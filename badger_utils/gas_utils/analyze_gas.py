@@ -11,7 +11,7 @@ from badger_utils.constants import HISTORICAL_MAINNET_ELASTIC_URL
 from badger_utils.constants import NUMBER_OF_BINS
 
 
-def is_outlier(points: np.array, thresh=3.5) -> list[bool]:
+def is_outlier(points: np.array, thresh=3.5) -> bool:
     """
     Returns a boolean array with True if points are outliers and False
     otherwise.
