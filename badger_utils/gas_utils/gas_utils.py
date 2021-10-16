@@ -3,17 +3,12 @@ from brownie.network import gas_price
 from brownie.network.gas.strategies import ExponentialScalingStrategy
 from brownie.network.gas.strategies import GasNowStrategy
 from brownie.network.gas.strategies import SimpleGasStrategy
-from scripts.view.gas_intelligence import analyze_gas
 from web3 import Web3
 
+from badger_utils.constants import BSC_STATIC_PRICE
+from badger_utils.constants import EXPONENTIAL_SCALING_CONFIG
+from badger_utils.gas_utils.analyze_gas import analyze_gas
 from badger_utils.network_manager import network_manager
-
-exponential_scaling_config = {
-    "initial_gas_price": "100 gwei",
-    "max_gas_price": "1000 gwei",
-}
-
-bsc_static_price = Wei("10 gwei")
 
 
 class StaticGasStrategy(SimpleGasStrategy):
@@ -30,18 +25,18 @@ class GasStrategies:
         self.standard = GasNowStrategy("standard")
         self.fast = GasNowStrategy("fast")
         self.rapid = GasNowStrategy("rapid")
-        self.bsc_static = StaticGasStrategy(bsc_static_price)
+        self.bsc_static = StaticGasStrategy(BSC_STATIC_PRICE)
         self.analyzed = analyze_gas({"timeframe": "minutes", "periods": 15})
 
         self.exponential_scaling = ExponentialScalingStrategy(
             initial_gas_price=self.standard.get_gas_price(),
-            max_gas_price=Wei(exponential_scaling_config["max_gas_price"]),
+            max_gas_price=Wei(EXPONENTIAL_SCALING_CONFIG["max_gas_price"]),
             time_duration=120,
         )
 
         self.exponential_scaling_fast = ExponentialScalingStrategy(
             initial_gas_price=self.fast.get_gas_price(),
-            max_gas_price=Wei(exponential_scaling_config["max_gas_price"]),
+            max_gas_price=Wei(EXPONENTIAL_SCALING_CONFIG["max_gas_price"]),
             time_duration=60,
         )
 
@@ -50,7 +45,7 @@ class GasStrategies:
 
     def gas_cost(self, gas_estimate):
         """
-        total gas cost of estimate in wei
+        Total gas cost of estimate in wei
         """
         return Web3.toWei(
             Web3.fromWei(self.fast.get_gas_price(), "gwei") * gas_estimate, "gwei"
