@@ -114,6 +114,16 @@ timelock_abi = artifacts.open_zeppelin["TokenTimelock"]["abi"]
 ```
 
 ### Using registries
+
+### On chain registry:
+```python
+from badger_utils.registry import chain_registries
+
+chain_registries.initialize()
+chain_registries.get("badgerTree")
+```
+### Locally defined registry
+**NOTE:** This is legacy way of working with registries
 ```python
 from brownie import web3
 from badger_utils.registry import registry
