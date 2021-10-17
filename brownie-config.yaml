@@ -36,7 +36,8 @@ compiler:
         optimizer:
             enabled: true
             runs: 200
-        remappings: null
+        remappings:
+            - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.2.0"
     vyper:
         version: null
 
