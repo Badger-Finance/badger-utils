@@ -4,7 +4,7 @@ This is the library for all badger utils that were moved from [badger-system](ht
 
 | Build  | Coverage | PYPI | 
 | ------------- | ------------- | ------------- |
-| [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/SHAKOTN/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/SHAKOTN/badger-utils)  | [![PyPI version](https://badge.fury.io/py/badger-utils.svg)](https://badge.fury.io/py/badger-utils) |
+| [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/Badger-Finance/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/Badger-Finance/badger-utils)  | [![PyPI version](https://badge.fury.io/py/badger-utils.svg)](https://badge.fury.io/py/badger-utils) |
 
 
 ---
