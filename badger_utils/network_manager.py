@@ -4,17 +4,23 @@ from typing import Optional
 
 from brownie import network
 
-ETHEREUM_NETWORK = "eth"
-BINANCE_NETWORK = "bsc"
+from badger_utils.constants import ARBITRUM_NETWORK
+from badger_utils.constants import BINANCE_NETWORK
+from badger_utils.constants import ETHEREUM_NETWORK
+from badger_utils.constants import POLYGON_NETWORK
 
 
 class NetworkManager:
     @staticmethod
     def network_name(raw_network_name: str) -> Optional[str]:
         if re.match(r"^mainnet", raw_network_name):
-            return "eth"
+            return ETHEREUM_NETWORK
         if re.match(r"(?:bsc|binance)", raw_network_name):
-            return "bsc"
+            return BINANCE_NETWORK
+        if re.match(r"^polygon", raw_network_name):
+            return POLYGON_NETWORK
+        if re.match(r"^arbitrum", raw_network_name):
+            return ARBITRUM_NETWORK
         return None
 
     @staticmethod
