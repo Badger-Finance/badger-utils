@@ -1,4 +1,6 @@
 import pytest
+from brownie import BadgerRegistry  # noqa
+from brownie import accounts
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -11,3 +13,8 @@ def isolate(fn_isolation):
 @pytest.fixture(scope="module")
 def token(Token, accounts):
     return Token.deploy("Test Token", "TST", 18, 1e21, {'from': accounts[0]})
+
+
+@pytest.fixture(scope="module")
+def badger_registry():
+    return BadgerRegistry.deploy({'from': accounts[0]})

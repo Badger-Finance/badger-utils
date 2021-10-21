@@ -132,6 +132,16 @@ class ContractSystems(Enum):
     TOKENS = "tokens"
 
 
+BADGER_REGISTRY_ADDRESS = "0xFda7eB6f8b7a9e9fCFd348042ae675d1d652454f"  # Multichain BadgerRegistry
+
+ETHEREUM_NETWORK = "eth"
+BINANCE_NETWORK = "bsc"
+POLYGON_NETWORK = "polygon"
+ARBITRUM_NETWORK = "arbitrum"
+
+SUPPORTED_NETWORKS = [ETHEREUM_NETWORK, BINANCE_NETWORK, POLYGON_NETWORK, ARBITRUM_NETWORK]
+
+
 EXPONENTIAL_SCALING_CONFIG = {
     "initial_gas_price": "100 gwei",
     "max_gas_price": "1000 gwei",
