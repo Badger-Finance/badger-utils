@@ -1,13 +1,13 @@
 from brownie import Wei
 from brownie.network import gas_price
 from brownie.network.gas.strategies import ExponentialScalingStrategy
-from brownie.network.gas.strategies import GasNowStrategy
 from brownie.network.gas.strategies import SimpleGasStrategy
 from web3 import Web3
 
 from badger_utils.constants import BSC_STATIC_PRICE
 from badger_utils.constants import EXPONENTIAL_SCALING_CONFIG
 from badger_utils.gas_utils.analyze_gas import analyze_gas
+from badger_utils.gas_utils.gas_now_compatible_strategy import GasNowCompatibleStrategy
 from badger_utils.network_manager import network_manager
 
 
@@ -22,9 +22,9 @@ class StaticGasStrategy(SimpleGasStrategy):
 
 class GasStrategies:
     def __init__(self):
-        self.standard = GasNowStrategy("standard")
-        self.fast = GasNowStrategy("fast")
-        self.rapid = GasNowStrategy("rapid")
+        self.standard = GasNowCompatibleStrategy("standard")
+        self.fast = GasNowCompatibleStrategy("fast")
+        self.rapid = GasNowCompatibleStrategy("rapid")
         self.bsc_static = StaticGasStrategy(BSC_STATIC_PRICE)
         self.analyzed = analyze_gas({"timeframe": "minutes", "periods": 15})
 
