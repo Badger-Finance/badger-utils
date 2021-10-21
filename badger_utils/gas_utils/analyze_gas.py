@@ -1,6 +1,7 @@
 import os
 from time import time
 from typing import Dict
+from typing import List
 from typing import Optional
 
 import numpy as np
@@ -45,7 +46,7 @@ def is_outlier(points: np.array, thresh=3.5) -> bool:
     return modified_z_score > thresh
 
 
-def fetch_gas_hour(network: str, hours=24) -> list[float]:
+def fetch_gas_hour(network: str, hours=24) -> List[float]:
     """
     Fetch average hourly gas prices over the last specified hours
     """
@@ -87,7 +88,7 @@ def fetch_gas_hour(network: str, hours=24) -> list[float]:
 
 
 # fetch average gas prices per minute over the last specified minutes
-def fetch_gas_min(network: str, minutes=60) -> list[float]:
+def fetch_gas_min(network: str, minutes=60) -> List[float]:
     es = Elasticsearch(
         hosts=[network],
         http_auth=(os.environ.get("ANYBLOCK_EMAIL"), os.environ.get("ANYBLOCK_KEY")), timeout=180
