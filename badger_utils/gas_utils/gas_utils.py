@@ -60,6 +60,3 @@ class GasStrategies:
 
     def optimal_price(self):
         return min(self.fast.get_gas_price(), self.analyzed.mode)
-
-
-gas_strategies = GasStrategies()

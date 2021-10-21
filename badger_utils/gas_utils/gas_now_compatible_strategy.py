@@ -2,6 +2,9 @@ import requests
 from brownie.network.gas.bases import SimpleGasStrategy
 
 
+GASNOW_COMPATIBLE_API = "https://etherchain.org/api/gasnow"
+
+
 # This module is a port for GasNowStrategy strategy. As GasNow service is closed, use
 # gasnow org API which is a Gasnow API compatible enpoint
 class GasNowCompatibleStrategy(SimpleGasStrategy):
@@ -11,6 +14,6 @@ class GasNowCompatibleStrategy(SimpleGasStrategy):
         self.speed = speed
 
     def get_gas_price(self) -> int:
-        response = requests.get("https://www.gasnow.org/api/v3/gas/price")
+        response = requests.get(GASNOW_COMPATIBLE_API)
         response.raise_for_status()
         return response.json()["data"][self.speed]
