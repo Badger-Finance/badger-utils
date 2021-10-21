@@ -1,5 +1,5 @@
-from badger_utils.gas_utils.gas_utils import gas_strategies
+from badger_utils.gas_utils.gas_utils import GasStrategies
 
 __all__ = [
-    "gas_strategies"
+    "GasStrategies"
 ]
