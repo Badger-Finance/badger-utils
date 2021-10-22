@@ -52,6 +52,16 @@ strategies.gas_cost(gas_estimate=21000)
 # Set default strategy:
 strategies.set_default_for_active_chain()
 ```
+**NOTE:** If you want to use Anyblock historical data in gas analysis, consider adding auth keys
+from anyblock account:
+```shell
+export ANYBLOCK_EMAIL=email@gmail.com
+export ANYBLOCK_KEY=<YOU ANYBLOCK API KEY>
+```
+otherwise `def analyze_gas` function will always return static data:
+```python
+DotMap(mode=999999999999999999, median=999999999999999999, std=999999999999999999)
+```
 
 
 ### Using network utils
