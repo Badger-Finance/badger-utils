@@ -21,13 +21,13 @@ def test_gas_strategies__class_init():
             }
         }, status=200
     )
-    stragegies = GasStrategies()
-    assert stragegies.standard is not None
-    assert stragegies.fast is not None
-    assert stragegies.rapid is not None
-    assert stragegies.bsc_static is not None
-    assert stragegies.exponential_scaling is not None
-    assert stragegies.exponential_scaling_fast is not None
+    strategies = GasStrategies()
+    assert strategies.standard is not None
+    assert strategies.fast is not None
+    assert strategies.rapid is not None
+    assert strategies.bsc_static is not None
+    assert strategies.exponential_scaling is not None
+    assert strategies.exponential_scaling_fast is not None
 
 
 @responses.activate
@@ -47,8 +47,8 @@ def test_optimal_price__takes_minimal_price():
             }
         }, status=200
     )
-    stragegies = GasStrategies()
-    price = stragegies.optimal_price()
+    strategies = GasStrategies()
+    price = strategies.optimal_price()
     assert price == 123123
 
 
@@ -69,8 +69,8 @@ def test_gas_gost():
             }
         }, status=200
     )
-    stragegies = GasStrategies()
-    price = stragegies.gas_cost(21000)
+    strategies = GasStrategies()
+    price = strategies.gas_cost(21000)
     assert price == 123123 * 21000
 
 
@@ -97,8 +97,8 @@ def test_set_default_strategy(mocker):
             }
         }, status=200
     )
-    stragegies = GasStrategies()
-    stragegies.set_default_for_active_chain()
+    strategies = GasStrategies()
+    strategies.set_default_for_active_chain()
     assert gas_price.called
 
 
