@@ -40,10 +40,10 @@ class GasStrategies:
             time_duration=60,
         )
 
-    def set_default(self, strategy):
+    def set_default(self, strategy) -> None:
         gas_price(strategy)
 
-    def gas_cost(self, gas_estimate):
+    def gas_cost(self, gas_estimate: int) -> int:
         """
         Total gas cost of estimate in wei
         """
@@ -51,12 +51,12 @@ class GasStrategies:
             Web3.fromWei(self.fast.get_gas_price(), "gwei") * gas_estimate, "gwei"
         )
 
-    def set_default_for_active_chain(self):
+    def set_default_for_active_chain(self) -> None:
         chain = network_manager.get_active_network()
         if chain == "eth":
             self.set_default(self.exponential_scaling)
         elif chain == "bsc":
             self.set_default(self.bsc_static)
 
-    def optimal_price(self):
+    def optimal_price(self) -> int:
         return min(self.fast.get_gas_price(), self.analyzed.mode)
