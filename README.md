@@ -6,30 +6,7 @@ This is the library for all badger utils that were moved from [badger-system](ht
 | ------------- | ------------- | ------------- |
 | [![Tests](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/SHAKOTN/badger-utils/actions/workflows/main.yml) | [![codecov](https://codecov.io/gh/Badger-Finance/badger-utils/branch/master/graph/badge.svg?token=210VN0EJ90)](https://codecov.io/gh/Badger-Finance/badger-utils)  | [![PyPI version](https://badge.fury.io/py/badger-utils.svg)](https://badge.fury.io/py/badger-utils) |
 
-
 ---
-
-## Features and Utils
-**Current state** of library and components and what was moved from [badger-system repo](https://github.com/Badger-Finance/badger-system):
-### Systems:
-1. AaveSystem
-2. SushiSwapSystem
-3. CompoundSystem
-
-### Utils:
-1. Registry
-2. Proxy utils
-3. Coingecko utils
-4. Network manager
-5. Time utils
-6. Token utils
-7. Digg utils
-8. txTimer utility
-9. Full constants module
-10. Different misc functions
-
-### Testing Tools:
-`distribute_from_whales` and some other balance calculation functions
 
 ## Requirements
 To make use of library you would need some interfaces and contracts to be [compiled](https://eth-brownie.readthedocs.io/en/stable/compile.html) 
@@ -38,7 +15,7 @@ List of required interfaces can be found [here](https://github.com/SHAKOTN/badge
 
 You also need some contracts to be compiled as well:
 ```
-ForceEther, SafeMath, Token
+ForceEther, SafeMath, Token, BadgerRegistry
 ```
 
 ## Installing library
@@ -60,6 +37,31 @@ from badger_utils.coingecko_utils import fetch_usd_price
 some_erc_token = interface.IERC20(Token)
 usd_price = fetch_usd_price(some_erc_token.address)
 ```
+
+### Using gas_utils module:
+```python
+from badger_utils.gas_utils import GasStrategies
+
+# Class initialization will initialize everything and fetch gas prices
+strategies = GasStrategies()
+
+price = strategies.optimal_price()
+# check gas cost:
+strategies.gas_cost(gas_estimate=21000)
+# Set default strategy:
+strategies.set_default_for_active_chain()
+```
+**NOTE:** If you want to use Anyblock historical data in gas analysis, consider adding auth keys
+from anyblock account:
+```shell
+export ANYBLOCK_EMAIL=email@gmail.com
+export ANYBLOCK_KEY=<YOU ANYBLOCK API KEY>
+```
+otherwise `def analyze_gas` function will always return static data:
+```python
+DotMap(mode=999999999999999999, median=999999999999999999, std=999999999999999999)
+```
+
 
 ### Using network utils
 ```python

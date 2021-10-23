@@ -1,5 +1,6 @@
 from enum import Enum
 
+from brownie import Wei
 from brownie.network import web3
 
 AddressZero = "0x0000000000000000000000000000000000000000"
@@ -139,3 +140,14 @@ POLYGON_NETWORK = "polygon"
 ARBITRUM_NETWORK = "arbitrum"
 
 SUPPORTED_NETWORKS = [ETHEREUM_NETWORK, BINANCE_NETWORK, POLYGON_NETWORK, ARBITRUM_NETWORK]
+
+
+EXPONENTIAL_SCALING_CONFIG = {
+    "initial_gas_price": "100 gwei",
+    "max_gas_price": "1000 gwei",
+}
+
+BSC_STATIC_PRICE = Wei("10 gwei")
+HISTORICAL_MAINNET_ELASTIC_URL = "https://api.anyblock.tools/ethereum/ethereum/mainnet/es/"
+
+NUMBER_OF_BINS = 60  # number of bins for histogram
