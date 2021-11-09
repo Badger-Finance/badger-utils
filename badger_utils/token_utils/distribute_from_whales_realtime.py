@@ -1,3 +1,4 @@
+from time import sleep
 from typing import List
 from typing import Optional
 
@@ -51,3 +52,6 @@ def distribute_from_whales_realtime(
     # Normal Transfers
     for token_addr in tokens:
         distribute_from_whale_realtime(token_addr, recipient, percentage=percentage)
+        # This is needed because Ethplrorer API will raise exc if requests are made too often
+        # for the free API key
+        sleep(0.5)
