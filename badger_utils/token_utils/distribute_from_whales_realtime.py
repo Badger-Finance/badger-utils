@@ -1,6 +1,5 @@
 from typing import List
 from typing import Optional
-from typing import Union
 
 from brownie import *
 from brownie.network.account import Account
@@ -26,9 +25,9 @@ def distribute_from_whale_realtime(
             target_whale = token_whale['address']  # type: str
     if not target_whale:
         raise TokenWhaleNotFound(f"Cannot find whale for token {token_address}")
-    force_ether = ForceEther.deploy({"from": recipient})
     if recipient.balance() < 2 * 10 ** 18:
-        distribute_test_ether(recipient, Wei("2 ether"))
+        distribute_test_ether(recipient, Wei("5 ether"))
+    force_ether = ForceEther.deploy({"from": recipient})
     recipient.transfer(force_ether, Wei("2 ether"))
     force_ether.forceSend(target_whale, {"from": recipient})
 
@@ -42,7 +41,7 @@ def distribute_from_whale_realtime(
 
 def distribute_from_whales_realtime(
         recipient: Account,
-        percentage: Optional[float] = 0.8, assets: Union[Optional[str], List[str]] = "All",
+        percentage: Optional[float] = 0.8,
         tokens: Optional[List[str]] = None) -> None:
     """
     NOTE: This only works on Ethereum, since Ethplorer doesn't support any other chain
@@ -51,6 +50,4 @@ def distribute_from_whales_realtime(
         tokens = TARGET_TOKENS
     # Normal Transfers
     for token_addr in tokens:
-        if assets != "All":
-            continue
         distribute_from_whale_realtime(token_addr, recipient, percentage=percentage)
