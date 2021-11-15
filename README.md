@@ -91,6 +91,11 @@ assert contract.address is not None
 ```
 
 ### Using distribute from whales realtime
+If you want to use some other Ethplorer key to fetch whales, set env variable: ETHPLORER_API_KEY
+```shell
+export ETHPLORER_API_KEY=<API_KEY>
+```
+Otherwise, ethplorer key will be used by default, which is a bit slow
 ```python
 import token  # some deployed token
 from brownie import accounts

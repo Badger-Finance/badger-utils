@@ -24,6 +24,7 @@ def distribute_from_whale_realtime(
         # Use first whale that is not a contract
         if is_address_eoa(web3.toChecksumAddress(token_whale['address'])):
             target_whale = token_whale['address']  # type: str
+            break
     if not target_whale:
         raise TokenWhaleNotFound(f"Cannot find whale for token {token_address}")
     if recipient.balance() < 2 * 10 ** 18:
