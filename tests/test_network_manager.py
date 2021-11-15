@@ -39,9 +39,8 @@ def test_network_manager_get_active_network__binance(mocker):
     assert network_manager.get_active_network() == BINANCE_NETWORK
 
 
-def test_network_manager_get_active_network__not_recognized():
-    with pytest.raises(Exception):
-        network_manager.get_active_network()
+def test_network_manager_get_active_network__default():
+    assert network_manager.get_active_network() == "development"
 
 
 def test_network_manager_get_badger_deploy__eth(mocker):
@@ -50,6 +49,14 @@ def test_network_manager_get_badger_deploy__eth(mocker):
         return_value="mainnet"
     )
     assert network_manager.get_active_network_badger_deploy() == 'deploy-final.json'
+
+
+def test_network_manager_get_active_network__development(mocker):
+    mocker.patch(
+        "badger_utils.network_manager.network.show_active",
+        return_value="development"
+    )
+    assert network_manager.get_active_network() == "development"
 
 
 def test_network_manager_get_badger_deploy__binance(mocker):
