@@ -15,6 +15,15 @@ def token(Token, accounts):
     return Token.deploy("Test Token", "TST", 18, 1e21, {'from': accounts[0]})
 
 
+@pytest.fixture
+def mock_target_tokens(token, mocker):
+    mocker.patch(
+        "badger_utils.token_utils.distribute_from_whales_realtime.TARGET_TOKENS",
+        [token.address]
+    )
+    yield
+
+
 @pytest.fixture(scope="module")
 def badger_registry():
     return BadgerRegistry.deploy({'from': accounts[0]})

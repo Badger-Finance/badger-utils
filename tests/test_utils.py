@@ -1,6 +1,7 @@
 import pytest
-
+from brownie import accounts
 from badger_utils.utils import approx
+from badger_utils.utils import is_address_eoa
 from badger_utils.utils import val
 
 
@@ -35,3 +36,12 @@ def test_approx_no_match(actual, expected, threshold):
 def test_val(amount, decimals, expected):
     result = val(amount, decimals)
     assert result == expected
+
+
+def test_is_address_eoa_accounts():
+    for account in accounts:
+        assert is_address_eoa(account.address)
+
+
+def test_is_address_eoa_token(token):
+    assert not is_address_eoa(token.address)

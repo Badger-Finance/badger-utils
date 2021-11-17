@@ -13,6 +13,7 @@ class ContractRegistries(BaseRegistry):
     def __init__(self):
         super().__init__()
         self.registries["eth"] = eth_registry
+        self.registries["development"] = eth_registry
         self.registries["bsc"] = bsc_registry
 
 

@@ -5,6 +5,7 @@ from typing import Optional
 from brownie import network
 
 from badger_utils.constants import ARBITRUM_NETWORK
+from badger_utils.constants import DEVELOPMENT_NETWORK
 from badger_utils.constants import BINANCE_NETWORK
 from badger_utils.constants import ETHEREUM_NETWORK
 from badger_utils.constants import POLYGON_NETWORK
@@ -21,6 +22,8 @@ class NetworkManager:
             return POLYGON_NETWORK
         if re.match(r"^arbitrum", raw_network_name):
             return ARBITRUM_NETWORK
+        if re.match(r"^development", raw_network_name):
+            return DEVELOPMENT_NETWORK
         return None
 
     @staticmethod

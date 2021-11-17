@@ -17,7 +17,6 @@ You also need some contracts to be compiled as well:
 ```
 ForceEther, SafeMath, Token, BadgerRegistry
 ```
-
 ## Installing library
 `pip install badger-utils`
 
@@ -30,15 +29,28 @@ $ brownie test
 ```
 
 ## Using library
+- [Coingecko Utils](#using-coingecko-utils)
+- [Gas utils module](#using-gas_utils-module)
+- [Network utils](#using-network-utils)
+- [Proxy utils](#using-proxy-utils)
+- [Distribute from whales realtime](#using-distribute-from-whales-realtime)
+- [Token utils](#using-token-utils)
+- [Constants](#using-constants)
+- [Tx timer](#using-tx-timer)
+- [Artifacts](#using-artifacts)
+- [Local registry](#locally-defined-registry)
+- [On chain registry](#on-chain-registry)
+- [Systems](#using-systems)
+
 Giving some examples on library usage:
-### Using coingecko utils:
+### Using coingecko utils
 ```python
 from badger_utils.coingecko_utils import fetch_usd_price
 some_erc_token = interface.IERC20(Token)
 usd_price = fetch_usd_price(some_erc_token.address)
 ```
 
-### Using gas_utils module:
+### Using gas_utils module
 ```python
 from badger_utils.gas_utils import GasStrategies
 
@@ -62,7 +74,6 @@ otherwise `def analyze_gas` function will always return static data:
 DotMap(mode=999999999999999999, median=999999999999999999, std=999999999999999999)
 ```
 
-
 ### Using network utils
 ```python
 from badger_utils.network_manager import network_manager
@@ -79,7 +90,25 @@ contract = deploy_proxy_admin(accounts[0])
 assert contract.address is not None
 ```
 
+### Using distribute from whales realtime
+If you want to use some other Ethplorer key to fetch whales, set env variable: ETHPLORER_API_KEY
+```shell
+export ETHPLORER_API_KEY=<API_KEY>
+```
+Otherwise, ethplorer key will be used by default, which is a bit slow
+```python
+import token  # some deployed token
+from brownie import accounts
+from badger_utils.token_utils.distribute_from_whales_realtime import distribute_from_whales_realtime
+
+token.transfer(
+    "0x19d099670a21bC0a8211a89B84cEdF59AbB4377F", 100000, {'from': accounts[0]}
+)
+distribute_from_whales_realtime(accounts[1], percentage=0.8)
+```
+
 ### Using token utils
+**LEGACY**. Consider using `distribute_from_whales_realtime` module
 ```python
 import token  # some deployed token
 from brownie import accounts
@@ -117,7 +146,7 @@ timelock_abi = artifacts.open_zeppelin["TokenTimelock"]["abi"]
 
 ### Using registries
 
-### On chain registry:
+### On chain registry
 ```python
 from badger_utils.registry import chain_registries
 
