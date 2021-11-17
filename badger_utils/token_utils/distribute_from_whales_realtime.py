@@ -16,8 +16,9 @@ class TokenWhaleNotFound(Exception):
 
 
 def distribute_from_whale_realtime(
-        token_address: str, recipient: Account,
-        percentage: Optional[float] = 0.2) -> None:
+        recipient: Account,
+        percentage: Optional[float] = 0.2,
+        token_address: Optional[str] = TARGET_TOKENS[0]) -> None:
     token_whales = get_top_token_holders(token_address)['holders']
     target_whale = ''
     for token_whale in token_whales:
@@ -52,7 +53,7 @@ def distribute_from_whales_realtime(
         tokens = TARGET_TOKENS
     # Normal Transfers
     for token_addr in tokens:
-        distribute_from_whale_realtime(token_addr, recipient, percentage=percentage)
+        distribute_from_whale_realtime(recipient, percentage=percentage, token_address=token_addr)
         # This is needed because Ethplrorer API will raise exc if requests are made too often
         # for the free API key
         sleep(0.5)
