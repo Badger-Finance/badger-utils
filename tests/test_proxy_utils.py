@@ -4,6 +4,7 @@ from brownie import accounts
 from badger_utils.proxy_utils import deploy_proxy
 from badger_utils.proxy_utils import deploy_proxy_admin
 from badger_utils.proxy_utils import deploy_proxy_uninitialized
+from badger_utils.proxy_utils import get_proxy_admin
 from badger_utils.registry.artifacts import artifacts
 
 
@@ -49,3 +50,18 @@ def test_deploy_proxy():
     )
     assert contract.address is not None
     assert accounts[1].gas_used != 0
+
+
+def test_get_proxy_admin():
+    proxy_admin_contract = deploy_proxy_admin(accounts[1])
+    contract = deploy_proxy(
+        "TokenTimelock",
+        logic_abi=artifacts.open_zeppelin["TokenTimelock"]["abi"],
+        logic=proxy_admin_contract.address,
+        proxy_admin=proxy_admin_contract.address,
+        initializer="0x",
+        deployer=accounts[1],
+    )
+    assert contract.address is not None
+    assert accounts[1].gas_used != 0
+    assert get_proxy_admin(contract.address) == proxy_admin_contract.address

@@ -8,7 +8,7 @@ from brownie.network.gas.strategies import GasNowStrategy
 from badger_utils.registry.artifacts import artifacts
 
 gas_strategy = GasNowStrategy("rapid")
-
+ADMIN_SLOT = int(0xB53127684A568B3173AE13B9F8A6016E243E63B6E8EE1178D6A717850B5D6103)
 
 def deploy_proxy_admin(deployer: Account) -> Contract:
     abi = artifacts.open_zeppelin["ProxyAdmin"]["abi"]
@@ -59,3 +59,9 @@ def deploy_proxy(
     transaction = deployer.transfer(data=deploy_txn["data"])
 
     return Contract.from_abi(contract_name, transaction.contract_address, logic_abi)
+
+
+def get_proxy_admin(proxy: str) -> str:
+    return web3.toChecksumAddress(
+        web3.eth.getStorageAt(proxy, ADMIN_SLOT).hex()
+    )
