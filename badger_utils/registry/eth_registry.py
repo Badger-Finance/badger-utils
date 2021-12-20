@@ -1,6 +1,8 @@
 from brownie.network import web3
 from dotmap import DotMap
 
+from badger_utils.constants import BBADGER
+from badger_utils.constants import SPELL
 from badger_utils.constants import WhaleRegistryAction
 from badger_utils.registry.chain_registry import ChainRegistry
 from badger_utils.registry.yearn_registry import YearnRegistry
@@ -212,6 +214,8 @@ eth_registry = ChainRegistry(
 
 eth_registry.tokens = DotMap(
     weth="0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    bbadger=BBADGER,
+    spell=SPELL,
     wbtc="0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
     crv="0xD533a949740bb3306d119CC777fa900bA034cd52",
     tbtc=web3.toChecksumAddress("0x8daebade922df735c38c80c7ebd708af50815faa"),
