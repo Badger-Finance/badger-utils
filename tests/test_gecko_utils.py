@@ -24,6 +24,20 @@ GECKO_GENERIC_RESPONSE = {'market_data': {'current_price': {'usd': 3500.12}}}
         (registry.tokens.xSushi, "xsushi"),
         (registry.tokens.bbadger, "badger-sett-badger"),
         (registry.tokens.spell, "spell-token"),
+        (registry.tokens.renbtc, "renbtc"),
+        (registry.tokens.sbtc, "sbtc"),
+        (registry.tokens.tbtc, "tbtc"),
+        (registry.tokens.bbtc, "binance-wrapped-btc"),
+        (registry.tokens.obtc, "boringdao-btc"),
+        (registry.tokens.pbtc, "ptokens-btc"),
+        (registry.tokens.hbtc, "huobi-btc"),
+        (registry.tokens.meta, "meta"),
+        (registry.tokens.bnb, "binance-coin"),
+        (registry.tokens.matic, "polygon"),
+        (registry.tokens.aave, "aave"),
+        (registry.tokens.comp, "compound"),
+        (registry.tokens.ohm, "olympus"),
+        (registry.tokens.swpr, "swapr"),
     ]
 )
 def test_token_to_id(address, id):
