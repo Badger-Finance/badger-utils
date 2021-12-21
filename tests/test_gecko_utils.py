@@ -1,11 +1,47 @@
+import pytest
 import responses
 
+from badger_utils.coingecko_utils import address_to_id
 from badger_utils.coingecko_utils import fetch_daily_twap
 from badger_utils.coingecko_utils import fetch_usd_price
 from badger_utils.coingecko_utils import fetch_usd_price_eth
 from badger_utils.coingecko_utils import fetch_usd_value
+from badger_utils.registry import registry
 
 GECKO_GENERIC_RESPONSE = {'market_data': {'current_price': {'usd': 3500.12}}}
+
+
+@pytest.mark.parametrize(
+    "address, id",
+    [
+        (registry.tokens.wbtc, "wrapped-bitcoin"),
+        (registry.tokens.badger, "badger-dao"),
+        (registry.tokens.digg, "digg"),
+        (registry.tokens.cvx, "convex-finance"),
+        (registry.tokens.crv, "curve-dao-token"),
+        (registry.tokens.cvxCrv, "convex-crv"),
+        (registry.tokens.sushi, "sushi"),
+        (registry.tokens.xSushi, "xsushi"),
+        (registry.tokens.bbadger, "badger-sett-badger"),
+        (registry.tokens.spell, "spell-token"),
+        (registry.tokens.renbtc, "renbtc"),
+        (registry.tokens.sbtc, "sbtc"),
+        (registry.tokens.tbtc, "tbtc"),
+        (registry.tokens.bbtc, "binance-wrapped-btc"),
+        (registry.tokens.obtc, "boringdao-btc"),
+        (registry.tokens.pbtc, "ptokens-btc"),
+        (registry.tokens.hbtc, "huobi-btc"),
+        (registry.tokens.meta, "meta"),
+        (registry.tokens.bnb, "binance-coin"),
+        (registry.tokens.matic, "polygon"),
+        (registry.tokens.aave, "aave"),
+        (registry.tokens.comp, "compound"),
+        (registry.tokens.ohm, "olympus"),
+        (registry.tokens.swpr, "swapr"),
+    ]
+)
+def test_token_to_id(address, id):
+    assert address_to_id(address) == id
 
 
 @responses.activate

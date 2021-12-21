@@ -9,16 +9,37 @@ from requests import HTTPError
 from badger_utils.registry import registry
 
 
+TOKEN_TO_ID_MAP = {
+    web3.toChecksumAddress(registry.tokens.wbtc): "wrapped-bitcoin",
+    web3.toChecksumAddress(registry.tokens.badger): "badger-dao",
+    web3.toChecksumAddress(registry.tokens.digg): "digg",
+    web3.toChecksumAddress(registry.tokens.cvx): "convex-finance",
+    web3.toChecksumAddress(registry.tokens.crv): "curve-dao-token",
+    web3.toChecksumAddress(registry.tokens.cvxCrv): "convex-crv",
+    web3.toChecksumAddress(registry.tokens.sushi): "sushi",
+    web3.toChecksumAddress(registry.tokens.xSushi): "xsushi",
+    web3.toChecksumAddress(registry.tokens.bbadger): "badger-sett-badger",
+    web3.toChecksumAddress(registry.tokens.spell): "spell-token",
+    web3.toChecksumAddress(registry.tokens.renbtc): "renbtc",
+    web3.toChecksumAddress(registry.tokens.sbtc): "sbtc",
+    web3.toChecksumAddress(registry.tokens.tbtc): "tbtc",
+    web3.toChecksumAddress(registry.tokens.bbtc): "binance-wrapped-btc",
+    web3.toChecksumAddress(registry.tokens.obtc): "boringdao-btc",
+    web3.toChecksumAddress(registry.tokens.pbtc): "ptokens-btc",
+    web3.toChecksumAddress(registry.tokens.hbtc): "huobi-btc",
+    web3.toChecksumAddress(registry.tokens.meta): "meta",
+    web3.toChecksumAddress(registry.tokens.bnb): "binance-coin",
+    web3.toChecksumAddress(registry.tokens.matic): "polygon",
+    web3.toChecksumAddress(registry.tokens.aave): "aave",
+    web3.toChecksumAddress(registry.tokens.comp): "compound",
+    web3.toChecksumAddress(registry.tokens.ohm): "olympus",
+    web3.toChecksumAddress(registry.tokens.swpr): "swapr",
+}
+
+
 def address_to_id(token_address: str) -> Union[str, bool]:
     checksummed = web3.toChecksumAddress(token_address)
-    if checksummed == web3.toChecksumAddress(registry.tokens.wbtc):
-        return "wrapped-bitcoin"
-    if checksummed == web3.toChecksumAddress(registry.tokens.badger):
-        return "badger-dao"
-    if checksummed == web3.toChecksumAddress(registry.tokens.digg):
-        return "digg"
-    else:
-        assert False
+    return TOKEN_TO_ID_MAP.get(checksummed, False)
 
 
 def fetch_usd_value(token_address: str, amount: int) -> float:
