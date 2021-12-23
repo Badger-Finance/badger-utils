@@ -13,6 +13,11 @@ To make use of library you would need some interfaces and contracts to be [compi
 and injected by brownie into your brownie project.
 List of required interfaces can be found [here](https://github.com/SHAKOTN/badger-utils/tree/master/interfaces)
 
+You also need some contracts to be compiled as well:
+```
+ForceEther, SafeMath, Token, BadgerRegistry
+```
+
 ## Installing library
 `pip install badger-utils`
 

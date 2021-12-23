@@ -1,3 +1,4 @@
+import os
 from time import sleep
 from typing import List
 from typing import Optional
@@ -7,7 +8,6 @@ from brownie.network.account import Account
 
 from badger_utils.constants import TARGET_TOKENS
 from badger_utils.ethplorer_utils import get_top_token_holders
-from badger_utils.token_utils.utils import distribute_test_ether
 from badger_utils.utils import is_address_eoa
 
 
@@ -40,8 +40,10 @@ def _top_up_whale_with_funds(from_account: Account, whale: str):
 
 def distribute_from_whales_realtime(
         recipient: Account,
-        percentage: Optional[float] = 0.8,
-        tokens: Optional[List[str]] = None) -> None:
+        mantissa: Optional[float] = 0.8,
+        tokens: Optional[List[str]] = None,
+        percentage: Optional[bool] = True,
+) -> None:
     """
     NOTE: This only works on Ethereum, since Ethplorer doesn't support any other chain
     """
@@ -51,33 +53,17 @@ def distribute_from_whales_realtime(
     for token_addr in tokens:
         token = interface.IERC20(token_addr)
         target_whale = _get_whale(token_addr)
-        if recipient.balance() < 2 * 10 ** 18:
-            distribute_test_ether(recipient, Wei("5 ether"))
         _top_up_whale_with_funds(recipient, target_whale)
-
+        if percentage:
+            amount = token.balanceOf(target_whale) * mantissa
+        else:
+            amount = mantissa
+        if token.balanceOf(target_whale) < amount:
+            raise NotEnoughBalance(f"Whale {target_whale} has not enough balance")
         token.transfer(
-            recipient, token.balanceOf(target_whale) * percentage, {"from": target_whale}
+            recipient, amount, {"from": target_whale}
         )
         # This is needed because Ethplrorer API will raise exc if requests are made too often
         # for the free API key
-        sleep(0.5)
-
-
-def distribute_from_whales_realtime_amount(
-        recipient: Account,
-        amount: int,
-        tokens: Optional[List[str]] = None) -> None:
-    if not tokens:
-        tokens = TARGET_TOKENS
-    for token_addr in tokens:
-        token = interface.IERC20(token_addr)
-        target_whale = _get_whale(token_addr)
-        if recipient.balance() < 2 * 10 ** 18:
-            distribute_test_ether(recipient, Wei("5 ether"))
-        if token.balanceOf(target_whale) < amount:
-            raise NotEnoughBalance(f"Whale {target_whale} has not enough balance")
-        _top_up_whale_with_funds(recipient, target_whale)
-        token.transfer(recipient, amount, {"from": target_whale})
-        # This is needed because Ethplrorer API will raise exc if requests are made too often
-        # for the free API key
-        sleep(0.5)
+        if not os.environ.get('ETHPLORER_API_KEY'):
+            sleep(0.5)
