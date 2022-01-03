@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=['tests*']),
     include_package_data=True,
-    version="0.2.2",
+    version="0.2.3",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
