@@ -7,7 +7,12 @@ from requests import HTTPError
 
 from badger_utils.token_utils.distribute_from_whales_realtime import NotEnoughBalance
 from badger_utils.token_utils.distribute_from_whales_realtime import TokenWhaleNotFound
-from badger_utils.token_utils.distribute_from_whales_realtime import distribute_from_whales_realtime
+from badger_utils.token_utils.distribute_from_whales_realtime import (
+    distribute_from_whales_realtime_exact,
+)
+from badger_utils.token_utils.distribute_from_whales_realtime import (
+    distribute_from_whales_realtime_percentage,
+)
 
 TEST_WHALE_ADDRESS = "0x19d099670a21bC0a8211a89B84cEdF59AbB4377F"
 
@@ -39,7 +44,7 @@ def test_distribute_from_whales_realtime(token, mock_target_tokens, responses_mo
     token.transfer(
         TEST_WHALE_ADDRESS, initial_whale_balance, {'from': accounts[0]}
     )
-    distribute_from_whales_realtime(accounts[1], mantissa=0.8)
+    distribute_from_whales_realtime_percentage(accounts[1], 0.8)
     # Make sure that whale's address was topped
     assert Account(TEST_WHALE_ADDRESS).balance() != initial_whale_eth
     assert token.balanceOf(
@@ -61,7 +66,7 @@ def test_distribute_from_whales_realtime__no_eoa_whale(token, mock_target_tokens
         status=200
     )
     with pytest.raises(TokenWhaleNotFound):
-        distribute_from_whales_realtime(accounts[1], mantissa=0.8)
+        distribute_from_whales_realtime_percentage(accounts[1], 0.8)
 
 
 def test_distribute_from_whales_realtime__ethplorer_returns_err(
@@ -73,7 +78,7 @@ def test_distribute_from_whales_realtime__ethplorer_returns_err(
         status=404
     )
     with pytest.raises(HTTPError):
-        distribute_from_whales_realtime(accounts[1], mantissa=0.8)
+        distribute_from_whales_realtime_percentage(accounts[1], 0.8)
 
 
 def test_distribute_from_whales_realtime__no_token_deployed(mocker, responses_mock):
@@ -83,7 +88,7 @@ def test_distribute_from_whales_realtime__no_token_deployed(mocker, responses_mo
         ["0x3472A5A71965499acd81997a54BBA8D852C6E53d"]
     )
     with pytest.raises(ContractNotFound):
-        distribute_from_whales_realtime(accounts[1], mantissa=0.8)
+        distribute_from_whales_realtime_percentage(accounts[1], 0.8)
 
 
 def test_distribute_from_whales_realtime_amount__happy(token, mock_target_tokens, responses_mock):
@@ -106,7 +111,7 @@ def test_distribute_from_whales_realtime_amount__happy(token, mock_target_tokens
     token.transfer(
         TEST_WHALE_ADDRESS, initial_whale_balance, {'from': accounts[0]}
     )
-    distribute_from_whales_realtime(accounts[1], test_amount, percentage=False)
+    distribute_from_whales_realtime_exact(accounts[1], test_amount)
     # Make sure that whale's address was topped
     assert Account(TEST_WHALE_ADDRESS).balance() != initial_whale_eth
     assert token.balanceOf(TEST_WHALE_ADDRESS) == initial_whale_balance - test_amount
@@ -136,4 +141,4 @@ def test_distribute_from_whales_realtime_amount__not_enough_balance(
         TEST_WHALE_ADDRESS, initial_whale_balance, {'from': accounts[0]}
     )
     with pytest.raises(NotEnoughBalance):
-        distribute_from_whales_realtime(accounts[1], test_amount, percentage=False)
+        distribute_from_whales_realtime_exact(accounts[1], test_amount)

@@ -101,24 +101,24 @@ Otherwise, ethplorer key will be used by default, which is a bit slow
 ```python
 import token  # some deployed token
 from brownie import accounts
-from badger_utils.token_utils.distribute_from_whales_realtime import distribute_from_whales_realtime
+from badger_utils.token_utils.distribute_from_whales_realtime import distribute_from_whales_realtime_percentage
 
 token.transfer(
     "0x19d099670a21bC0a8211a89B84cEdF59AbB4377F", 100000, {'from': accounts[0]}
 )
-distribute_from_whales_realtime(accounts[1], percentage=0.8)
+distribute_from_whales_realtime_percentage(accounts[1], percentage=0.8)
 ```
 
 ### Using distribute from whales realtime with exact amount
 ```python
 import token  # some deployed token
 from brownie import accounts
-from badger_utils.token_utils.distribute_from_whales_realtime import distribute_from_whales_realtime_amount
+from badger_utils.token_utils.distribute_from_whales_realtime import distribute_from_whales_realtime_exact
 
 token.transfer(
     "0x19d099670a21bC0a8211a89B84cEdF59AbB4377F", 100000, {'from': accounts[0]}
 )
-distribute_from_whales_realtime_amount(accounts[1], amount=123)
+distribute_from_whales_realtime_exact(accounts[1], amount=123)
 ```
 
 ### Using token utils

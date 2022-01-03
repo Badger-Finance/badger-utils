@@ -2,6 +2,7 @@ import os
 from time import sleep
 from typing import List
 from typing import Optional
+from typing import Union
 
 from brownie import *
 from brownie.network.account import Account
@@ -40,7 +41,7 @@ def _top_up_whale_with_funds(from_account: Account, whale: str):
 
 def distribute_from_whales_realtime(
         recipient: Account,
-        mantissa: Optional[float] = 0.8,
+        mantissa: Optional[Union[float, int]] = 0.8,
         tokens: Optional[List[str]] = None,
         percentage: Optional[bool] = True,
 ) -> None:
@@ -67,3 +68,17 @@ def distribute_from_whales_realtime(
         # for the free API key
         if not os.environ.get('ETHPLORER_API_KEY'):
             sleep(0.5)
+
+
+def distribute_from_whales_realtime_exact(
+        recipient: Account, amount: int,
+        tokens: Optional[List[str]] = None,
+):
+    distribute_from_whales_realtime(recipient, amount, tokens, percentage=False)
+
+
+def distribute_from_whales_realtime_percentage(
+        recipient: Account, percentage: float,
+        tokens: Optional[List[str]] = None,
+):
+    distribute_from_whales_realtime(recipient, percentage, tokens, percentage=True)
