@@ -1,4 +1,4 @@
 dotmap
 eth-brownie>=1.14.0
-numpy==1.20.3
+numpy==1.21.0
 elasticsearch==7.10.1
