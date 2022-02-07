@@ -19,3 +19,4 @@ def test_digg_utils():
     )
     digg = DiggUtils(mock_contract.address)
     assert digg.shares_to_fragments(10) == 0
+    assert digg.fragments_to_shares(10) == 0
